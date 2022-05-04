@@ -13,6 +13,8 @@ echo '
     <a href="insert.php">Insert Record</a>
 </header><br>';
 
+
+
 $connectionParams = [
     'dbname' => 'USRPS',
     'user' => 'root',
@@ -22,9 +24,12 @@ $connectionParams = [
 ];
 $conn = DriverManager::getConnection($connectionParams);
 
+if(isset($_POST['button'])) {
+    $conn->createQueryBuilder()->DELETE('Round')->WHERE('pk_ID='.$_POST['deleteItem'])->executeQuery();
+}
+
 $query0 = $conn->createQueryBuilder()->SELECT('*')->FROM('Player','p0')
     ->JOIN('p0','Round', 'r','p0.pk_ID = r.fk_pk_player0');
-
 
 $cursor = $query0->executeQuery()->fetchAllAssociative();
 
@@ -41,16 +46,23 @@ foreach ($cursor as $roundAndPlayer0) {
     $round = new Round($roundAndPlayer0['pk_ID'], $player0, $player1, $roundAndPlayer0['pick0'], $roundAndPlayer0['pick1'], $roundAndPlayer0['datetime'], $roundAndPlayer0['winner']);
 
     $rounds[] = $round;
-
 }
 
 foreach ($rounds as $round) {
-    echo 'Game '.$round->getId().':<br>';
+
+    echo '<div style="background-color: gray">Game '.$round->getId().':<br>';
     echo $round->getPlayer0()->getFirstName();
     echo ', picked: '.$round->getPick0();
     echo '<br>'.$round->getPlayer1()->getFirstName();
     echo ', picked: '.$round->getPick1();
     echo '<br>'.$round->getDate();
     echo '<br>The Winner is: '.($round->getWinner() === null ? 'nobody' : ($round->getWinner() ? 'player 2' : 'player 1'));
-    echo '<br><br><br>';
+
+    echo '<form method="post">
+        <input type="hidden" name="deleteItem" value="'.$round->getId().'">
+        <input type="submit" name="button"
+                value="Delete Game"/>
+    </form>';
+
+    echo '</div><br>';
 }
