@@ -24,7 +24,7 @@ $connectionParams = [
 ];
 $conn = DriverManager::getConnection($connectionParams);
 
-if(isset($_POST['button'])) {
+if(isset($_POST['deleteButton'])) {
     $conn->createQueryBuilder()->DELETE('Round')->WHERE('pk_ID='.$_POST['deleteItem'])->executeQuery();
 }
 
@@ -60,7 +60,7 @@ foreach ($rounds as $round) {
 
     echo '<form method="post">
         <input type="hidden" name="deleteItem" value="'.$round->getId().'">
-        <input type="submit" name="button"
+        <input type="submit" name="deleteButton"
                 value="Delete Game"/>
     </form>';
 
