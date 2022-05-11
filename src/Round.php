@@ -108,7 +108,7 @@ class Round
     /**
      * @return Player
      */
-    public function getplayer0(): Player
+    public function getPlayer0(): Player
     {
         return $this->player0;
     }
@@ -116,7 +116,7 @@ class Round
     /**
      * @return Player
      */
-    public function getplayer1(): Player
+    public function getPlayer1(): Player
     {
         return $this->player1;
     }

@@ -16,9 +16,10 @@ echo '
 
 
 $connectionParams = [
-    'host' => 'jdbc:sqlite:C:\xampp\htdocs\Projects\USRPS\db.sqlite',
     'driver' => 'pdo_sqlite',
+    'path' => 'C:\xampp\htdocs\Projects\USRPS\db.sqlite',
 ];
+
 $conn = DriverManager::getConnection($connectionParams);
 
 
@@ -30,8 +31,8 @@ if(isset($_POST['insertUserButton'])) {
 
     $conn->createQueryBuilder()->insert('player')->values(
         [
-            'Vorname' => '?',
-            'Nachname' => '?'
+            'firstName' => '?',
+            'lastName' => '?'
         ])
         ->setParameter(0, $firstName)
         ->setParameter(1, $lastName)
@@ -50,15 +51,19 @@ if(isset($_POST['insertGameButton'])) {
 
     $date = htmlspecialchars($_POST['date']);
 
-    $winner = ($_POST['winner']-1);
+    if(is_numeric($_POST['winner'])) {
+        $winner = ($_POST['winner']-1);
+    } else {
+        $winner = $_POST['winner'];
+    }
 
 
 
 
     $conn->createQueryBuilder()->insert('round')->values(
         [
-            'fk_pk_player0' => '?',
-            'fk_pk_player1' => '?',
+            'player0' => '?',
+            'player1' => '?',
             'pick0' => '?',
             'pick1' => '?',
             'datetime' => '?',
@@ -96,7 +101,7 @@ echo '<h1>Round:</h1>
         <select name="player0" id="player1">';
 
 foreach ($players as $player) {
-    echo '<option value="'.$player['pk_ID'].'">'.$player['Vorname'].' '.$player['Nachname'].'</option>';
+    echo '<option value="'.$player['pk_ID'].'">'.$player['firstName'].' '.$player['lastName'].'</option>';
 }
 
 
@@ -105,7 +110,7 @@ echo '</select><br>
         <select name="player1" id="player1">';
 
 foreach ($players as $player) {
-    echo '<option value="'.$player['pk_ID'].'">'.$player['Vorname'].' '.$player['Nachname'].'</option>';
+    echo '<option value="'.$player['pk_ID'].'">'.$player['firstName'].' '.$player['lastName'].'</option>';
 }
 
 
