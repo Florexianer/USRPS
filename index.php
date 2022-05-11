@@ -14,11 +14,9 @@ echo '
 </header><br>';
 
 $connectionParams = [
-    'dbname' => 'USRPS',
-    'user' => 'root',
-    'password' => '',
-    'host' => 'localhost:3306',
-    'driver' => 'pdo_mysql',
+    'dbname' => 'main',
+    'host' => 'jdbc:sqlite:C:\xampp\htdocs\Projects\USRPS\db.sqlite',
+    'driver' => 'pdo_sqlite',
 ];
 $conn = DriverManager::getConnection($connectionParams);
 
@@ -45,12 +43,12 @@ foreach ($cursor as $roundAndPlayer0) {
 }
 
 foreach ($rounds as $round) {
-    echo 'Game '.$round->getId().':<br>';
+    echo 'Game '.$round->getpk_ID().':<br>';
     echo $round->getPlayer0()->getFirstName();
     echo ', picked: '.$round->getPick0();
     echo '<br>'.$round->getPlayer1()->getFirstName();
     echo ', picked: '.$round->getPick1();
-    echo '<br>'.$round->getDate();
+    echo '<br>'.$round->getDatetime();
     echo '<br>The Winner is: '.($round->getWinner() === null ? 'nobody' : ($round->getWinner() ? 'player 2' : 'player 1'));
     echo '<br><br><br>';
 }

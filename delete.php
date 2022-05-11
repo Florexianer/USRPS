@@ -16,11 +16,9 @@ echo '
 
 
 $connectionParams = [
-    'dbname' => 'USRPS',
-    'user' => 'root',
-    'password' => '',
-    'host' => 'localhost:3306',
-    'driver' => 'pdo_mysql',
+    'dbname' => 'main',
+    'host' => 'jdbc:sqlite:C:\xampp\htdocs\Projects\USRPS\db.sqlite',
+    'driver' => 'pdo_sqlite',
 ];
 $conn = DriverManager::getConnection($connectionParams);
 
@@ -50,16 +48,16 @@ foreach ($cursor as $roundAndPlayer0) {
 
 foreach ($rounds as $round) {
 
-    echo '<div style="background-color: gray">Game '.$round->getId().':<br>';
+    echo '<div style="background-color: gray">Game '.$round->getpk_ID().':<br>';
     echo $round->getPlayer0()->getFirstName();
     echo ', picked: '.$round->getPick0();
-    echo '<br>'.$round->getPlayer1()->getFirstName();
+    echo '<br>'.$round->getPk_player1()->getFirstName();
     echo ', picked: '.$round->getPick1();
-    echo '<br>'.$round->getDate();
+    echo '<br>'.$round->getDatetime();
     echo '<br>The Winner is: '.($round->getWinner() === null ? 'nobody' : ($round->getWinner() ? 'player 2' : 'player 1'));
 
     echo '<form method="post">
-        <input type="hidden" name="deleteItem" value="'.$round->getId().'">
+        <input type="hidden" name="deleteItem" value="'.$round->getpk_ID().'">
         <input type="submit" name="deleteButton"
                 value="Delete Game"/>
     </form>';

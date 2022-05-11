@@ -2,25 +2,40 @@
 
 namespace Oscorp\Usrps;
 
+use Doctrine\ORM\Mapping as ORM;
+
 require_once 'vendor/autoload.php';
 
+/**
+ * @ORM\Entity
+ */
 class Player
 {
+    /**
+     * @ORM\id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue
+     */
+    private int $pk_ID;
 
-    private int $id;
-
+    /**
+     * @ORM\Column
+     */
     private string $firstName;
 
+    /**
+     * @ORM\Column
+     */
     private string $lastName;
 
     /**
-     * @param int $id
+     * @param int $pk_ID
      * @param string $firstName
      * @param string $lastName
      */
-    public function __construct(int $id, string $firstName, string $lastName)
+    public function __construct(int $pk_ID, string $firstName, string $lastName)
     {
-        $this->id = $id;
+        $this->pk_ID = $pk_ID;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
     }
@@ -28,9 +43,9 @@ class Player
     /**
      * @return int
      */
-    public function getId(): int
+    public function getpk_ID(): int
     {
-        return $this->id;
+        return $this->pk_ID;
     }
 
     /**

@@ -16,11 +16,8 @@ echo '
 
 
 $connectionParams = [
-    'dbname' => 'USRPS',
-    'user' => 'root',
-    'password' => '',
-    'host' => 'localhost:3306',
-    'driver' => 'pdo_mysql',
+    'host' => 'jdbc:sqlite:C:\xampp\htdocs\Projects\USRPS\db.sqlite',
+    'driver' => 'pdo_sqlite',
 ];
 $conn = DriverManager::getConnection($connectionParams);
 
