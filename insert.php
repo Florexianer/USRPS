@@ -3,6 +3,8 @@
 use Doctrine\DBAL\DriverManager;
 use Oscorp\Usrps\Player;
 use Oscorp\Usrps\Round;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 require_once 'vendor/autoload.php';
 
@@ -78,7 +80,20 @@ if(isset($_POST['insertGameButton'])) {
         ->executeQuery();
 }
 
-echo '<h1>Player:</h1>
+
+$query1 = $conn->createQueryBuilder()->SELECT('*')->FROM('Player');
+
+$players = $query1->executeQuery()->fetchAllAssociative();
+
+
+$loader = new FilesystemLoader('.');
+
+$twig = new Environment($loader);
+
+echo $twig->render('insert.html', ['players' => $players]);
+
+
+/*echo '<h1>Player:</h1>
 <form method="post">
         <label for="firstName">First Name: </label>
         <input type="text" name="firstName">
@@ -88,11 +103,6 @@ echo '<h1>Player:</h1>
         <br><br>
         <input type="submit" name="insertUserButton" value="Insert User"/>
     </form>';
-
-$query1 = $conn->createQueryBuilder()->SELECT('*')->FROM('Player');
-
-$players = $query1->executeQuery()->fetchAllAssociative();
-
 
 
 echo '<h1>Round:</h1>
@@ -104,7 +114,6 @@ foreach ($players as $player) {
     echo '<option value="'.$player['pk_ID'].'">'.$player['firstName'].' '.$player['lastName'].'</option>';
 }
 
-
 echo '</select><br>
 <label for="player1">Player 2*:</label>
         <select name="player1" id="player1">';
@@ -112,8 +121,6 @@ echo '</select><br>
 foreach ($players as $player) {
     echo '<option value="'.$player['pk_ID'].'">'.$player['firstName'].' '.$player['lastName'].'</option>';
 }
-
-
 
 echo '  </select><br>
         <label for="pick0">Pick of Player 1*: </label>
@@ -136,4 +143,4 @@ echo '  </select><br>
 echo '
         
         <input type="submit" name="insertGameButton" value="Insert Game"/>
-    </form>';
+    </form>';*/

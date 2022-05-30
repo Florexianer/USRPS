@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>USRPS</title>
+</head>
+<body>
+
+{% for round in rounds %}
+<div style="background-color: gray">
+Game {{ round.pk_ID() }}:<br>
+{{ round.Player0().firstName() }}
+, picked: {{ round.Pick0() }}
+<br>{{ round.Player1().FirstName() }}
+, picked: {{ round.Pick1() }}
+<br>{{ round.Datetime() }}
+<br>The Winner is: {{ round.Winner() is same as null ? 'nobody' : (round.Winner() ? 'player 2' : 'player 1') }}
+<form method="post">
+  <input type="hidden" name="deleteItem" value="{{round.pk_ID()}}">
+  <input type="submit" name="deleteButton"
+         value="Delete Game"/>
+</form>
+
+</div><br>
+{% endfor %}
+</body>
+</html>

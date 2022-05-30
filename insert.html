@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Player:</h1>
+<form method="post">
+    <label for="firstName">First Name: </label>
+    <input type="text" name="firstName">
+    <br>
+    <label for="lastName">Last Name: </label>
+    <input type="text" name="lastName">
+    <br><br>
+    <input type="submit" name="insertUserButton" value="Insert User"/>
+</form>
+
+<h1>Round:</h1>
+<form method="post">
+    <label for="player1">Player 1*:</label>
+    <select name="player0" id="player1">
+        {% for player in players %}
+        <option value="{{ player['pk_ID'] }}">{{ player['firstName'] }} {{ player['lastName'] }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="player2">Player 2*:</label>
+    <select name="player1" id="player2">
+        {% for player in players %}
+        <option value="{{ player['pk_ID'] }}">{{ player['firstName'] }} {{ player['lastName'] }}</option>
+        {% endfor %}
+    </select><br>
+    <label for="pick0">Pick of Player 1*: </label>
+    <select name="pick0" id="pick0">
+        <option value="r">Rock</option>
+        <option value="p">Paper</option>
+        <option value="s">Scissors</option>
+    </select><br>
+    <label for="pick1">Pick of Player 2*: </label>
+    <select name="pick1" id="pick1">
+        <option value="r">Rock</option>
+        <option value="p">Paper</option>
+        <option value="s">Scissors</option>
+    </select><br>
+    <label for="date">Date*: </label>
+    <input type="datetime-local" name="date"><br>
+    <label for="winner">Winner: </label>
+    <input type="number" name="winner" min="1" max="2"><br>
+    <input type="submit" name="insertGameButton" value="Insert Game"/>
+</form>
+</body>
+</html>

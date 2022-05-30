@@ -3,6 +3,8 @@
 use Doctrine\DBAL\DriverManager;
 use Oscorp\Usrps\Player;
 use Oscorp\Usrps\Round;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
 
 require_once 'vendor/autoload.php';
 
@@ -46,7 +48,13 @@ foreach ($cursor as $roundAndPlayer0) {
     $rounds[] = $round;
 }
 
-foreach ($rounds as $round) {
+$loader = new FilesystemLoader('.');
+
+$twig = new Environment($loader);
+
+echo $twig->render('delete.html', ['rounds' => $rounds]);
+
+/*foreach ($rounds as $round) {
 
     echo '<div style="background-color: gray">Game '.$round->getpk_ID().':<br>';
     echo $round->getPlayer0()->getFirstName();
@@ -63,4 +71,4 @@ foreach ($rounds as $round) {
     </form>';
 
     echo '</div><br>';
-}
+}*/

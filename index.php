@@ -3,6 +3,9 @@
 use Doctrine\DBAL\DriverManager;
 use Oscorp\Usrps\Player;
 use Oscorp\Usrps\Round;
+use Twig\Environment;
+use Twig\Loader\FilesystemLoader;
+
 
 require_once 'vendor/autoload.php';
 
@@ -43,7 +46,14 @@ foreach ($cursor as $roundAndPlayer0) {
 
 }
 
-foreach ($rounds as $round) {
+
+$loader = new FilesystemLoader('.');
+
+$twig = new Environment($loader);
+
+echo $twig->render('index.html', ['rounds' => $rounds]);
+
+/*foreach ($rounds as $round) {
     echo 'Game '.$round->getpk_ID().':<br>';
     echo $round->getPlayer0()->getFirstName();
     echo ', picked: '.$round->getPick0();
@@ -52,4 +62,4 @@ foreach ($rounds as $round) {
     echo '<br>'.$round->getDatetime();
     echo '<br>The Winner is: '.($round->getWinner() === null ? 'nobody' : ($round->getWinner() ? 'player 2' : 'player 1'));
     echo '<br><br><br>';
-}
+}*/
