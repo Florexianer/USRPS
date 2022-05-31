@@ -1,20 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+    <link rel="stylesheet" href="styles.css"/>
+    <meta charset="UTF-8"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600&display=swap" rel="stylesheet">
     <title>USRPS</title>
 </head>
+
 <body>
 
-{% for round in rounds %}
-Game {{ round.pk_ID() }}:<br>
- {{ round.Player0().firstName() }}
-, picked: {{ round.Pick0() }}
-<br>{{ round.Player1().FirstName() }}
-, picked: {{ round.Pick1() }}
-<br>{{ round.Datetime() }}
-<br>The Winner is: {{ round.Winner() is same as null ? 'nobody' : (round.Winner() ? 'player 2' : 'player 1') }}
-<br><br><br>
-{% endfor %}
+<div class="wrapper">
+
+    <div class="navigation">
+        <form action="index.php">
+            <input type="submit" value="Home"/>
+        </form>
+
+        <form action="delete.php">
+            <input type="submit" value="Delete"/>
+        </form>
+
+        <form action="insert.php">
+            <input type="submit" value="Insert"/>
+        </form>
+
+    </div>
+
+    {% for round in rounds %}
+
+    <div class="games">
+
+        <div class="gameTitle">
+
+            <h1> Game {{ round.pk_ID() }} </h1>
+            <br>
+            <p> {{ round.Datetime() }} </p>
+
+        </div>
+
+        <div class="gameInfo">
+
+            <div class="firstPlayer">
+
+                <h3> {{ round.Player0().FirstName() }} {{ round.Player0().LastName() }} </h3>
+
+                <br>
+
+
+                {% if round.Pick0() == "r" %}
+                <img src="./assets/Rock.png" width="100">
+                {% elseif round.Pick0() == "s" %}
+                <img src="./assets/Scissors.png" width="100">
+                {% elseif round.Pick0() == "p" %}
+                <img src="./assets/Paper.png" width="100">
+                {% endif %}
+
+            </div>
+
+            <div class="secondPlayer">
+
+                <h3> {{ round.Player1().FirstName() }} {{ round.Player1().LastName() }} </h3>
+                <br>
+
+                {% if round.Pick1() == "r" %}
+                <img src="./assets/Rock.png" width="100">
+                {% elseif round.Pick1() == "s" %}
+                <img src="./assets/Scissors.png" width="100">
+                {% elseif round.Pick1() == "p" %}
+                <img src="./assets/Paper.png" width="100">
+                {% endif %}
+            </div>
+
+        </div>
+
+        <div class="extraInfo">
+
+            <h2> The Winner is {{ round.Winner() is same as null ? 'nobody' : (round.Winner() ?
+                round.Player1().FirstName() : round.Player0().firstName()) }} </h2>
+
+        </div>
+
+    </div>
+
+    {% endfor %}
+</div>
 </body>
 </html>

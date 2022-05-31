@@ -8,18 +8,21 @@ use Twig\Loader\FilesystemLoader;
 
 require_once 'vendor/autoload.php';
 
+/**
 echo '
 <header style="background-color: gray">
     <a href="index.php">Home </a>
     <a href="delete.php">Delete Record</a>
     <a href="insert.php">Insert Record</a>
 </header><br>';
-
+*/
 
 
 $connectionParams = [
     'driver' => 'pdo_sqlite',
-    'path' => 'C:\xampp\htdocs\Projects\USRPS\db.sqlite',
+    //'path' => 'C:\xampp\htdocs\Projects\USRPS\db.sqlite',
+    'path' => '/Applications/XAMPP/xamppfiles/htdocs/WEBT/USRPS/db.sqlite',
+
 ];
 
 $conn = DriverManager::getConnection($connectionParams);

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/USRPS.iml" filepath="$PROJECT_DIR$/.idea/USRPS.iml" />
+      <module fileurl="file://$USER_HOME$/Downloads/challenge-rock-paper-scissors-game-main/.idea/challenge-rock-paper-scissors-game-main.iml" filepath="$USER_HOME$/Downloads/challenge-rock-paper-scissors-game-main/.idea/challenge-rock-paper-scissors-game-main.iml" />
     </modules>
   </component>
 </project>

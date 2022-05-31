@@ -1,0 +1,243 @@
+/*---------------------------------------------------------------
+ Global styles
+----------------------------------------------------------------*/
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Barlow Condensed", sans-serif;
+}
+
+/*
+-------------------------------------------------------------------------------
+HTML elements
+-------------------------------------------------------------------------------
+*/
+
+body {
+    width: 100vw;
+    background: radial-gradient(
+            134.34% 134.34% at 50% 0%,
+            #1f3757 0%,
+            #131537 100%
+    );
+}
+
+.wrapper {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.games {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    margin-top: 50px;
+    background-color: white;
+    width: 30%;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.extraInfo {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+    align-items: center;
+}
+
+.gameTitle {
+    margin-top: 2em;
+    margin-bottom: 2em;
+    text-align: center;
+}
+
+.gameInfo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 75%;
+}
+
+.firstPlayer {
+    display: block;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+}
+
+.secondPlayer {
+    display: block;
+    align-items: center;
+    text-align: center;
+    width: 50%;
+}
+
+.navigation {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.navigation > form {
+    margin: 1em;
+}
+
+input[type=submit] {
+    background-color: #ffffff;
+    color: black;
+    border-radius: 15px;
+    width: 10em;
+    height: 3em;
+    font-size: 1rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border: none;
+    text-decoration: none;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+
+input[type=submit]:hover {
+    background-color: #e7e7e7;
+
+}
+
+.title {
+    padding-left: 30px;
+}
+
+.score {
+    width: 150px;
+    height: 114px;
+    background-color: white;
+    border: 1px solid white;
+    border-radius: 8px;
+    margin-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.score h1 {
+    color: #565468;
+    font-size: 56px;
+    font-family: "Barlow", sans-serif;
+}
+
+.score p {
+    color: #2a45c2;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 19px;
+    letter-spacing: 2.5px;
+    text-align: left;
+}
+
+.hands {
+    background-image: url("../assets/triangle.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    visibility: visible;
+    opacity: 1;
+    position: relative;
+    width: 476px;
+    height: 430px;
+    margin-top: 100px;
+    display: flex;
+    z-index: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.hands img {
+    width: 200px;
+    height: 200px;
+    display: block;
+}
+
+.hands .paper {
+    margin-right: 20px;
+}
+
+.hands .scissors {
+    margin-left: 20px;
+}
+
+.hands .hand {
+    cursor: pointer;
+    transition: all 0.25s;
+}
+
+.hands .hand:hover {
+    transform: translate3d(0px, -8px, 0px);
+}
+
+.contest {
+    display: none;
+    margin-top: 50px;
+    width: 900px;
+}
+
+.contest img {
+    width: 275px;
+    height: 275px;
+}
+
+.contest > div {
+    flex: 1;
+}
+
+.contest h1 {
+    color: white;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    text-align: center;
+}
+
+.contest .newGame {
+    color: hsl(229, 25%, 31%);
+    background-color: white;
+    padding: 12px 24px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.15s;
+}
+
+.newGame:hover {
+    background: rgb(218, 218, 218);
+    transform: translate3d(0px, -2px, 0px);
+}
+
+.contest .handImageContainer {
+    display: flex;
+    justify-content: center;
+}
+
+.referee {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.referee h1 {
+    font-size: 45px;
+    color: white;
+}
+
+.computerhand {
+    display: flex;
+    flex-direction: column;
+}
